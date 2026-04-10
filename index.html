@@ -1,1 +1,37 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>License Age Checker</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            margin: 20px;\n        }\n        form {\n            margin-bottom: 20px;\n        }\n        .message {\n            margin-top: 20px;\n            font-weight: bold;\n        }\n        #licenseImage {\n            display: none;\n            margin-top: 10px;\n        }\n    </style>\n</head>\n<body>\n    <h1>Check Your License Eligibility</h1>\n    <form id="licenseForm">\n        <label for="name">Name:</label>\n        <input type="text" id="name" required><br><br>\n        <label for="surname">Surname:</label>\n        <input type="text" id="surname" required><br><br>\n        <label for="age">Age:</label>\n        <input type="number" id="age" required><br><br>\n        <input type="submit" value="Check License">\n    </form>\n    <div id="message" class="message"></div>\n    <img id="licenseImage" src="" alt="License Image" width="300">\n    <script>\n        document.getElementById('licenseForm').addEventListener('submit', function(event) {\n            event.preventDefault();\n            const name = document.getElementById('name').value;\n            const surname = document.getElementById('surname').value;\n            const age = parseInt(document.getElementById('age').value);\n            const messageElement = document.getElementById('message');\n            const licenseImage = document.getElementById('licenseImage');\n            if (age < 18) {\n                messageElement.textContent = `${name} ${surname}, you are too young to have a license.`;\n                licenseImage.style.display = 'none';\n            } else if (age < 21) {\n                messageElement.textContent = `${name} ${surname}, you can have a provisional license.`;\n                licenseImage.src = 'provisional_license_image_url.jpg'; // Add a valid image URL\n                licenseImage.style.display = 'block';\n            } else {\n                messageElement.textContent = `${name} ${surname}, you are eligible for a full license.`;\n                licenseImage.src = 'full_license_image_url.jpg'; // Add a valid image URL\n                licenseImage.style.display = 'block';\n            }\n        });\n    <\/script>\n</body>\n</html>\n
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verifica Patente</title>
+</head>
+<body>
+    <h1>Verifica Patente</h1>
+    
+    <label>Nome:</label>
+    <input type="text" id="nome">
+    
+    <label>Cognome:</label>
+    <input type="text" id="cognome">
+    
+    <label>Età:</label>
+    <input type="number" id="eta">
+    
+    <button onclick="verifica()">Verifica</button>
+    
+    <div id="risultato"></div>
+    
+    <script>
+        function verifica() {
+            var eta = parseInt(document.getElementById('eta').value);
+            var risultato = document.getElementById('risultato');
+            
+            if (eta >= 18) {
+                risultato.innerHTML = '<img src="patente_b.jpg" alt="Patente Tipo B">';
+            } else if (eta >= 16) {
+                risultato.innerHTML = '<img src="patente_a.jpg" alt="Patente Tipo A">';
+            } else {
+                risultato.innerHTML = 'riprova quando sarai più grande';
+            }
+        }
+    </script>
+</body>
+</html>
